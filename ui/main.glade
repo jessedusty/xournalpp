@@ -893,6 +893,15 @@
                       </widget>
                     </child>
                     <child>
+                      <widget class="GtkCheckMenuItem" id="menuToolsDotted">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_action_appearance">False</property>
+                        <property name="label" translatable="yes">Dotted</property>
+                        <property name="use_underline">False</property>
+                      </widget>
+                    </child>
+                    <child>
                       <widget class="GtkSeparatorMenuItem" id="separator9">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>

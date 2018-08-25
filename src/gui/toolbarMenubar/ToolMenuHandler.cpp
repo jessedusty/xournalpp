@@ -438,6 +438,9 @@ void ToolMenuHandler::initToolItems()
 	addToolItem(new ToolButton(listener, gui, "RULER", ACTION_RULER, GROUP_RULER, false,
 							   "ruler.svg", _C("Ruler"), gui->get("menuToolsRuler")));
 
+	addToolItem(new ToolButton(listener, gui, "DOTTED", ACTION_DOTTED, GROUP_DOTTED, false,
+								"tool_image.svg", _C("Dotted"), gui->get("menuToolsDotted")));
+
 	addToolItem(new ToolButton(listener, gui, "FINE", ACTION_SIZE_FINE, GROUP_SIZE, true,
 							   "thickness_thin.svg", _C("Thin")));
 	addToolItem(new ToolButton(listener, gui, "MEDIUM", ACTION_SIZE_MEDIUM, GROUP_SIZE, true,

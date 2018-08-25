@@ -265,7 +265,6 @@ void InputHandler::addPointToTmpStroke(GdkEventMotion* event)
 		tmpStroke->setLastPressure(pressure);
 	}
 	tmpStroke->addPoint(Point(x, y));
-
 	drawTmpStroke();
 }
 
@@ -403,12 +402,12 @@ void InputHandler::onButtonReleaseEvent(GdkEventButton* event, PageRef page)
 
 	UndoRedoHandler* undo = xournal->getControl()->getUndoRedoHandler();
 
-	undo->addUndoAction(new InsertUndoAction(page, layer, this->tmpStroke));
 
 	ToolHandler* h = xournal->getControl()->getToolHandler();
 	if (h->isShapeRecognizer())
 	{
-		if (this->reco == NULL)
+        undo->addUndoAction(new InsertUndoAction(page, layer, this->tmpStroke));
+        if (this->reco == NULL)
 		{
 			this->reco = new ShapeRecognizer();
 		}
@@ -454,10 +453,36 @@ void InputHandler::onButtonReleaseEvent(GdkEventButton* event, PageRef page)
 			page->fireElementChanged(this->tmpStroke);
 		}
 
-	}
+	} else if (h->isDotted()) {
+        auto prevPoint = this->tmpStroke->getPoint(0);
+        const double dot_length = 10;
+        double distance = 0;
+        bool toggle = true;
+        for (int i = 1; i < this->tmpStroke->getPointCount(); i++) {
+            auto currPoint = this->tmpStroke->getPoint(i);
+            distance += currPoint.lineLengthTo(prevPoint);
+            for (int d_int = 1; d_int * dot_length < distance; d_int++) {
+                auto newStroke = new Stroke();
+                if (toggle) {
+                    newStroke->setColor(this->tmpStroke->getColor());
+                    newStroke->setWidth(this->tmpStroke->getWidth());
+                    newStroke->addPoint(prevPoint.lineTo(currPoint, (d_int - 1) * dot_length));
+                    newStroke->addPoint(prevPoint.lineTo(currPoint, d_int * dot_length));
+                    undo->addUndoAction(new InsertUndoAction(page, layer, newStroke));
+                    layer->addElement(newStroke);
+                    page->fireElementChanged(newStroke);
+                }
+                toggle = !toggle;
+            }
+//            distance = std::fmod(distance,dot_length);
+            distance = 0;
+            prevPoint = currPoint;
+        }
+    }
 	else
 	{
-		layer->addElement(this->tmpStroke);
+        undo->addUndoAction(new InsertUndoAction(page, layer, this->tmpStroke));
+        layer->addElement(this->tmpStroke);
 		page->fireElementChanged(this->tmpStroke);
 	}
 

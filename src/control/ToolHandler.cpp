@@ -259,6 +259,17 @@ void ToolHandler::setRuler(bool ruler, bool disableOthers)
 	this->current->ruler = ruler;
 }
 
+void ToolHandler::setDotted(bool dotted, bool disableOthers) {
+	XOJ_CHECK_TYPE(ToolHandler);
+
+	if (dotted && disableOthers)
+	{
+		setAll(false);
+	}
+
+	this->current->dotted = dotted;
+}
+
 void ToolHandler::setRectangle(bool rectangle, bool disableOthers)
 {
 	XOJ_CHECK_TYPE(ToolHandler);
@@ -300,6 +311,13 @@ bool ToolHandler::isRuler()
 	XOJ_CHECK_TYPE(ToolHandler);
 
 	return this->current->ruler;
+}
+
+bool ToolHandler::isDotted()
+{
+	XOJ_CHECK_TYPE(ToolHandler);
+
+	return this->current->dotted;
 }
 
 bool ToolHandler::isRectangle()

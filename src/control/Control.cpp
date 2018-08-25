@@ -649,6 +649,10 @@ void Control::actionPerformed(ActionType type, ActionGroup group, GdkEvent* even
 		setRulerEnabled(enabled);
 		break;
 
+    case ACTION_DOTTED:
+        setDottedEnabled(enabled);
+        break;
+
 	case ACTION_SHAPE_RECOGNIZER:
 		setShapeRecognizerEnabled(enabled);
 		break;
@@ -1083,6 +1087,23 @@ void Control::setRulerEnabled(bool enabled)
 	if (enabled)
 	{
 		this->toolHandler->setRuler(true, true);
+	}
+}
+
+void Control::setDottedEnabled(bool enabled)
+{
+	XOJ_CHECK_TYPE(Control);
+
+	if (this->toolHandler->isDotted() == enabled)
+	{
+		return;
+	}
+
+	this->toolHandler->setDotted(enabled);
+	fireActionSelected(GROUP_DOTTED, enabled ? ACTION_DOTTED : ACTION_NONE);
+	if (enabled)
+	{
+		this->toolHandler->setDotted(true, true);
 	}
 }
 

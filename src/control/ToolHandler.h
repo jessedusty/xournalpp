@@ -40,10 +40,12 @@ public:
 
 	void setAll(bool set);
 	void setRuler(bool ruler, bool disableOthers = false);
+	void setDotted(bool dotted, bool disableOthers = false);
 	void setRectangle(bool rectangle, bool disableOthers = false);
 	void setCircle(bool circle, bool disableOthers = false);
 	void setArrow(bool arrow, bool disableOthers = false);
 	bool isRuler();
+	bool isDotted();
 	bool isRectangle();
 	bool isCircle();
 	bool isArrow();

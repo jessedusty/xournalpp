@@ -102,10 +102,12 @@ public:
 	bool isShapeRecognizer();
 	void setShapeRecognizer(bool enabled);
 	bool isRuler();
+	bool isDotted();
 	bool isRectangle();
 	bool isCircle();
 	bool isArrow();
 	void setRuler(bool enabled);
+	void setDotted(bool enabled);
 	void setRectangle(bool enabled);
 	void setCircle(bool enabled);
 	void setArrow(bool enabled);
@@ -113,6 +115,7 @@ public:
 	bool isEnableColor();
 	bool isEnableSize();
 	bool isEnableRuler();
+	bool isEnableDotted();
 	bool isEnableRectangle();
 	bool isEnableCircle();
 	bool isEnableArrow();
@@ -134,6 +137,7 @@ private:
 
 	bool shapeRecognizer;
 	bool ruler;
+	bool dotted;
 	bool rectangle;
 	bool circle;
 	bool arrow;
@@ -141,6 +145,7 @@ private:
 	bool enableColor;
 	bool enableSize;
 	bool enableRuler;
+	bool enableDotted;
 	bool enableRectangle;
 	bool enableCircle;
 	bool enableArrow;

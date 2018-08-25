@@ -14,6 +14,7 @@ Tool::Tool(string name, ToolType type, int color, bool enableColor, bool enableS
 	this->enableSize = enableSize;
 	this->enableShapeRecognizer = enableShapreRecognizer;
 	this->enableRuler = enableRuler;
+	this->enableDotted = enableRuler; // For now
 	this->enableRectangle = enableRectangle;
 	this->enableCircle = enableCircle;
 	this->enableArrow = enableArrow;
@@ -94,6 +95,13 @@ bool Tool::isEnableRuler()
 	return this->enableRuler;
 }
 
+bool Tool::isEnableDotted()
+{
+	XOJ_CHECK_TYPE(Tool);
+
+	return this->enableDotted;
+}
+
 bool Tool::isEnableRectangle()
 {
 	XOJ_CHECK_TYPE(Tool);
@@ -136,6 +144,13 @@ bool Tool::isRuler()
 	return this->ruler;
 }
 
+bool Tool::isDotted()
+{
+	XOJ_CHECK_TYPE(Tool);
+
+	return this->dotted;
+}
+
 bool Tool::isRectangle()
 {
 	XOJ_CHECK_TYPE(Tool);
@@ -169,6 +184,13 @@ void Tool::setRuler(bool enabled)
 	XOJ_CHECK_TYPE(Tool);
 
 	this->ruler = enabled;
+}
+
+void Tool::setDotted(bool enabled)
+{
+	XOJ_CHECK_TYPE(Tool);
+
+	this->dotted = enabled;
 }
 
 void Tool::setRectangle(bool enabled)

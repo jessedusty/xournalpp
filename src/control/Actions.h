@@ -99,6 +99,7 @@ enum ActionType
     ACTION_TOOL_DRAW_CIRCLE,
     ACTION_TOOL_DRAW_ARROW,
     ACTION_RULER,
+    ACTION_DOTTED,
 
     ACTION_SIZE_VERY_THIN,
     ACTION_SIZE_FINE,
@@ -180,6 +181,7 @@ enum ActionGroup
 
     GROUP_SHAPE_RECOGNIZER,
     GROUP_RULER,
+    GROUP_DOTTED,
 };
 
 class ActionHandler;
